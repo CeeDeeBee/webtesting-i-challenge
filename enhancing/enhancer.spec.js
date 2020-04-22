@@ -54,4 +54,18 @@ describe("enhancer.js", () => {
 			).toEqual({ name: "axe", durability: 100, enhancement: 16 });
 		});
 	});
+
+	describe("get()", () => {
+		it("should add text to name if enhancment > 0", () => {
+			expect(
+				enhancer.get({ name: "axe", durability: 100, enhancement: 16 })
+			).toEqual({ name: "[+16] axe", durability: 100, enhancement: 16 });
+		});
+
+		it("should not add text to name if enhancment = 0", () => {
+			expect(
+				enhancer.get({ name: "axe", durability: 100, enhancement: 0 })
+			).toEqual({ name: "axe", durability: 100, enhancement: 0 });
+		});
+	});
 });
